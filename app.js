@@ -1,6 +1,6 @@
 const questionNumber=document.querySelector(".question-number");
 const questionText=document.querySelector(".question-text");
-const optionContainer = document.querySelector("option-container");
+const optionContainer = document.querySelector(".option-container");
 
 let questionCounter =0;
 let currentQuestion;
@@ -38,10 +38,60 @@ function getNewQuestion(){
     {
         availableOptions.push(i)
     }
+
+    optionContainer.innerHTML = '';
+    let animationDelay=0.15;
+
     //create options in innerHTML
+    for(let i=0;i<optionLen;i++)
+    {
+        //random option
+        const optionIndex = availableOptions[Math.floor(Math.random() * availableOptions.length)];
+        //get the position of 'optionIndex' from the availableOptions
+        const index2=availableOptions.indexOf(optionIndex);
+        //remove the optionIndex' from the availableOptions,so that the option does not repeat
+        availableOptions.splice(index2,1);
+        const option = document.createElement("div");
+        option.innerHTML=currentQuestion.options[optionIndex];
+        option.id=optionIndex;
+        option.style.animationDelay = animationDelay + 's'
+        animationDelay=animationDelay+0.15;
+        option.className="option";
+        optionContainer.appendChild(option)
+        option.setAttribute("onclick","getResult(this)");
+
+    }
     questionCounter++
     //console.log(questionCounter)
 
+}
+//get the result of current attempt question
+function getResult(element)
+{
+    const id=parseInt(element.id);
+    //get the answer by comparing the id of clicked option
+    if(id===currentQuestion.answer)
+    {
+        //set the green color to the correct option
+        element.classList.add("correct");
+    }
+    else{
+        //set the red color to the wrong option
+        element.classList.add("wrong");
+    }
+    unclickableOptions();
+}
+
+//make all the options unclickable once the user select a option
+//RESTRICT THE USER TO CHANGE THE OPTION AGAIN
+function unclickableOptions(){
+    const optionLen = optionContainer.children.length;
+    for(let i=0 ; i<optionLen; i++)
+    {
+        optionContainer.children[i].classList.add("alresdy-answered");
+    
+    }
+    
 }
 function next(){
     if(questionCounter===quiz.length)
