@@ -163,7 +163,7 @@ body{
 }
 .quiz-box .answer-idicator div.correct{
     background-color: rgb(3, 184, 124);
-    background-image: url("D:/Myproject_sampath learners/Quiz template/correct.png");
+    background-image: url("../Quiz Template/correct.png");
     background-size: 50%;
     background-repeat: no-repeat;
     background-position: center;
