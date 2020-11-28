@@ -95,6 +95,10 @@ body{
     overflow: hidden;
     
 }
+.quiz-box .option-container .option.alresdy-answered{
+    pointer-events: none;
+}
+
 @keyframes fadeIn{
     0%{
         opacity: 0;
@@ -157,6 +161,17 @@ body{
     margin-right: 3px;
     margin-top: 15px;
 }
+.quiz-box .answer-idicator div.correct{
+    background-color: rgb(3, 184, 124);
+    background-image: url("../Quiz template/correct.png");
+    background-size: 50%;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+.quiz-box .answer-idicator div.wrong{
+    background-color: rgb(184, 3, 3);
+    
+}
 .result-box{
     text-align: center;
 }
@@ -184,4 +199,14 @@ body{
 }
 .result-box .btn{
     margin-right: 20px;
+}
+
+@media(max-width: 767px){
+    .result-box .btn{
+        margin-bottom: 15px;
+    }
+    body{
+        padding: 15px;
+    }
+
 }
